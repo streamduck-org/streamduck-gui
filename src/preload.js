@@ -1,4 +1,5 @@
 import {contextBridge, ipcRenderer} from 'electron';
+import {platform} from 'process';
 import streamduck from 'streamduck-node-client'
 
 const Store = require('electron-store');
@@ -52,9 +53,20 @@ contextBridge.exposeInMainWorld('fs', {
 })
 
 function connectStreamduck() {
-    let client = streamduck.newUnixClient({timeout: 15000});
+    let client = platform === "win32" ?
+        streamduck.newWindowsClient({timeout: 15000})
+        : streamduck.newUnixClient({timeout: 15000});
 
     let proxy = {};
+
+    let listener = null;
+
+    client.add_event_listener((event) => {
+        if (listener)
+            listener(event)
+    });
+
+    proxy.set_sd_listener = (l) => listener = l;
 
     Object.getOwnPropertyNames(Object.getPrototypeOf(client)).forEach(name => {
         if (name !== "constructor") {

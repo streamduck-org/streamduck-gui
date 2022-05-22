@@ -22,7 +22,7 @@ async function createWindow() {
 
     let pos_x = store.get("windowPos") ? store.get("windowPos")[0] : 500;
     let pos_y = store.get("windowPos") ? store.get("windowPos")[1] : 500;
-    let width_x = store.get("windowSize") ? store.get("windowSize")[0] : 1200;
+    let width_x = store.get("windowSize") ? store.get("windowSize")[0] : 1300;
     let width_y = store.get("windowSize") ? store.get("windowSize")[1] : 800;
 
     // Create the browser window.
@@ -31,7 +31,7 @@ async function createWindow() {
         y: pos_y,
         width: width_x,
         height: width_y,
-        minWidth: 1200,
+        minWidth: 1300,
         minHeight: 720,
         frame: false,
         hasShadow: false,
