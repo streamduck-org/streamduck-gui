@@ -7,6 +7,32 @@
           <v-fade-transition mode="out-in">
             <router-view/>
           </v-fade-transition>
+          <v-snackbar vertical bottom timeout="0" v-model="update" v-if="downloaded === 0">
+            New GUI Client update available!
+            <template v-slot:action="{ attrs }">
+              <v-btn color="white" plain v-bind="attrs"
+                     @click="download">
+                Download
+              </v-btn>
+              <v-btn color="white" plain v-bind="attrs" @click="changelog">
+                Changelog
+              </v-btn>
+              <v-btn color="white" plain v-bind="attrs" @click="update = false">
+                Dismiss
+              </v-btn>
+            </template>
+          </v-snackbar>
+          <v-snackbar v-else-if="downloaded === 1" v-model="update" timeout="0">
+            Downloading update...
+          </v-snackbar>
+          <v-snackbar v-else-if="downloaded === 2" v-model="update" timeout="0">
+            Ready to update!
+            <template v-slot:action="{ attrs }">
+              <v-btn color="white" plain v-bind="attrs" @click="do_update">
+                Restart
+              </v-btn>
+            </template>
+          </v-snackbar>
         </v-main>
       </v-app>
     </div>
@@ -19,13 +45,41 @@ import WindowBar from "./components/WindowBar.vue";
 export default {
   name: "App",
 
+  data() {
+    return {
+      update: false,
+      downloaded: 0,
+    }
+  },
+
   components: {
     WindowBar,
   },
 
   mounted() {
     this.$router.push({name: "DeviceList"});
+    window.update.register(() => {
+      this.update = true;
+      this.downloaded = 0;
+    }, () => {
+      this.downloaded = 2;
+    })
   },
+
+  methods: {
+    changelog() {
+      window.misc.changelog();
+    },
+
+    download() {
+      window.update.download();
+      this.downloaded = 1;
+    },
+
+    do_update() {
+      window.update.update();
+    }
+  }
 };
 </script>
 

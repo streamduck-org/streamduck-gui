@@ -41,6 +41,25 @@ contextBridge.exposeInMainWorld('dialog', {
     }
 })
 
+contextBridge.exposeInMainWorld('update', {
+    register_callbacks(avail, dled) {
+        ipcRenderer.on("update_available", avail);
+        ipcRenderer.on("update_downloaded", dled);
+    },
+
+    download() {
+        ipcRenderer.send("download");
+    },
+
+    update() {
+        ipcRenderer.send("restart_app");
+    },
+
+    changelog() {
+        require("electron").shell.openExternal("https://github.com/streamduck-org/streamduck-gui/releases");
+    }
+})
+
 contextBridge.exposeInMainWorld('fs', {
     is_folder_valid(path) {
         try {

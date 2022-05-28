@@ -3,6 +3,9 @@
 import {app, protocol, BrowserWindow, ipcMain, dialog} from 'electron'
 import {createProtocol} from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, {VUEJS_DEVTOOLS} from 'electron-devtools-installer'
+import {autoUpdater} from "electron-updater";
+
+autoUpdater.autoDownload = false
 
 const path = require('path')
 
@@ -72,6 +75,30 @@ async function createWindow() {
             changed = false;
         }
     }, 1000)
+
+    win.once('ready-to-show', () => {
+        autoUpdater.checkForUpdatesAndNotify();
+    });
+
+    autoUpdater.on('error', (error) => {
+        dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
+    })
+
+    autoUpdater.on("update-available", () => {
+        win.webContents.send('update_available');
+    });
+
+    autoUpdater.on("update-downloaded", () => {
+        win.webContents.send("update_downloaded");
+    })
+
+    ipcMain.on('download', () => {
+        autoUpdater.downloadUpdate();
+    })
+
+    ipcMain.on('restart_app', () => {
+        autoUpdater.quitAndInstall();
+    })
 
     ipcMain.on('folder-dialog', () => {
 
