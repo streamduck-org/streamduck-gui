@@ -76,9 +76,6 @@ async function createWindow() {
         }
     }, 1000)
 
-    win.once('ready-to-show', () => {
-        autoUpdater.checkForUpdatesAndNotify();
-    });
 
     autoUpdater.on('error', (error) => {
         dialog.showErrorBox('Error: ', error == null ? "unknown" : (error.stack || error).toString())
@@ -90,6 +87,10 @@ async function createWindow() {
 
     autoUpdater.on("update-downloaded", () => {
         win.webContents.send("update_downloaded");
+    })
+
+    ipcMain.on("check_updates", () => {
+        autoUpdater.checkForUpdatesAndNotify();
     })
 
     ipcMain.on('download', () => {

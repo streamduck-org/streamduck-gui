@@ -1,6 +1,6 @@
 {
   "name": "streamduck-gui",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "repository": "https://github.com/streamduck-org/streamduck-gui.git",
   "private": false,
   "scripts": {
@@ -8,11 +8,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "electron:build": "vue-cli-service electron:build",
-    "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "electron:serve": "vue-cli-service electron:serve"
   },
   "main": "background.js",
   "dependencies": {

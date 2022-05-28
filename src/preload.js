@@ -47,6 +47,10 @@ contextBridge.exposeInMainWorld('update', {
         ipcRenderer.on("update_downloaded", dled);
     },
 
+    check() {
+        ipcRenderer.send("check_updates")
+    },
+
     download() {
         ipcRenderer.send("download");
     },

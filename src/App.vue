@@ -58,12 +58,14 @@ export default {
 
   mounted() {
     this.$router.push({name: "DeviceList"});
-    window.update.register(() => {
+
+    window.update.register_callbacks(() => {
       this.update = true;
       this.downloaded = 0;
     }, () => {
       this.downloaded = 2;
-    })
+    });
+    window.update.check();
   },
 
   methods: {
