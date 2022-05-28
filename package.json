@@ -1,6 +1,7 @@
 {
   "name": "streamduck-gui",
   "version": "0.1.0",
+  "license": "GPL-3.0-or-later",
   "repository": "https://github.com/streamduck-org/streamduck-gui.git",
   "private": false,
   "scripts": {
