@@ -12,6 +12,7 @@ module.exports = defineConfig({
                     publish: ['github']
                 },
                 linux: {
+                    target: ['AppImage'],
                     publish: ['github']
                 }
             }
