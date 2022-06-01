@@ -8,12 +8,15 @@ module.exports = defineConfig({
             preload: 'src/preload.js',
             builderOptions: {
                 appId: 'org.streamduck.streamduck-gui',
+                productName: 'Streamduck GUI',
                 win: {
-                    publish: ['github']
+                    publish: ['github'],
+                    icon: "build/icons/icon.png"
                 },
                 linux: {
                     target: ['AppImage'],
-                    publish: ['github']
+                    publish: ['github'],
+                    icon: "build/icons/icon.png"
                 }
             }
         }
