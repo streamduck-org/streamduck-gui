@@ -10,6 +10,7 @@ module.exports = defineConfig({
                 appId: 'org.streamduck.streamduck-gui',
                 productName: 'Streamduck GUI',
                 win: {
+                    target: ['nsis'],
                     publish: ['github'],
                     icon: "build/icons/icon.png"
                 },
