@@ -1,6 +1,6 @@
 {
   "name": "streamduck-gui",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "license": "GPL-3.0-or-later",
   "repository": "https://github.com/streamduck-org/streamduck-gui.git",
   "private": false,
@@ -17,7 +17,7 @@
     "electron-store": "^8.0.1",
     "electron-updater": "^5.0.1",
     "process": "^0.11.10",
-    "streamduck-node-client": "^0.1.3",
+    "streamduck-node-client": "^0.1.4",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuetify": "^2.4.0"
