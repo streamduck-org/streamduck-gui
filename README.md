@@ -1,3 +1,5 @@
+# **DEPRECATED!** Originally was for [Rust version of Streamduck](https://github.com/streamduck-org/streamduck/tree/old-master)
+
 [![discord](https://img.shields.io/badge/Discord-blue?style=for-the-badge)](https://discord.gg/zTvhS7eYuQ)
 # Streamduck GUI Client
 
